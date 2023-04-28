@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="AtividadePonderada_Semana2_M2" id="Project-1ec8" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="AtividadePonderada_Semana2_M2" >
+		<table name="Conquistas" prior="Entity" >
+			<column name="ID_Conquista" type="INT" jt="4" mandatory="y" />
+			<column name="ID_Pessoa_3" type="INT" jt="4" mandatory="y" />
+			<column name="Título" type="VARCHAR" length="50" jt="12" />
+			<column name="Instituição" type="VARCHAR" length="50" jt="12" />
+			<column name="Descrição" type="VARCHAR" length="350" jt="12" />
+			<column name="Data" type="DATE" jt="91" />
+			<index name="pk_Conquistas" unique="PRIMARY_KEY" >
+				<column name="ID_Conquista" />
+				<column name="ID_Pessoa_3" />
+			</index>
+			<fk name="fk_Conquistas_Pessoa" virtual="y" to_schema="AtividadePonderada_Semana2_M2.INSTANCE" to_table="Pessoa" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="ID_Pessoa_3" pk="ID" />
+			</fk>
+		</table>
+		<table name="Experiência" prior="Entity" >
+			<column name="ID_Experiência" type="INT" jt="4" mandatory="y" />
+			<column name="ID_Pessoa" type="INT" jt="4" mandatory="y" />
+			<column name="Empresa" type="VARCHAR" length="100" jt="12" />
+			<column name="Realizações" prior="Atividade" type="VARCHAR" length="350" jt="12" />
+			<column name="Cargo" type="VARCHAR" length="50" jt="12" />
+			<column name="Início" type="DATE" jt="91" />
+			<column name="Fim" type="DATE" jt="91" />
+			<index name="pk_Experiência" unique="PRIMARY_KEY" >
+				<column name="ID_Experiência" />
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_Experiência_Pessoa" virtual="y" to_schema="AtividadePonderada_Semana2_M2.INSTANCE" to_table="Pessoa" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+		<table name="Formação" prior="Entity" >
+			<column name="ID_Form" type="INT" jt="4" mandatory="y" />
+			<column name="ID_Pessoa_2" type="INT" jt="4" mandatory="y" />
+			<column name="Instituição" type="VARCHAR" length="50" jt="12" />
+			<column name="Curso" type="VARCHAR" length="50" jt="12" />
+			<column name="Realizações" type="VARCHAR" length="350" jt="12" />
+			<column name="Início" type="DATE" jt="91" />
+			<column name="Fim" type="DATE" jt="91" />
+			<index name="pk_Formação" unique="PRIMARY_KEY" >
+				<column name="ID_Form" />
+				<column name="ID_Pessoa_2" />
+			</index>
+			<fk name="fk_Formação_Pessoa" virtual="y" to_schema="AtividadePonderada_Semana2_M2.INSTANCE" to_table="Pessoa" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="ID_Pessoa_2" pk="ID" />
+			</fk>
+		</table>
+		<table name="Habilidades" prior="Entity" >
+			<column name="ID_Habilidades" type="INT" jt="4" mandatory="y" />
+			<column name="ID_Pessoa_3" type="INT" jt="4" mandatory="y" />
+			<column name="Nome" type="VARCHAR" length="50" jt="12" />
+			<column name="Nível" type="INT" jt="4" />
+			<column name="Descrição" type="VARCHAR" length="350" jt="12" />
+			<index name="pk_Habilidades" unique="PRIMARY_KEY" >
+				<column name="ID_Habilidades" />
+				<column name="ID_Pessoa_3" />
+			</index>
+			<fk name="fk_Habilidades_Pessoa" virtual="y" to_schema="AtividadePonderada_Semana2_M2.INSTANCE" to_table="Pessoa" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="ID_Pessoa_3" pk="ID" />
+			</fk>
+		</table>
+		<table name="Idiomas" prior="Entity" >
+			<column name="ID" type="INT" jt="4" mandatory="y" />
+			<column name="ID_Pessoa_5" type="INT" jt="4" mandatory="y" />
+			<column name="Idioma" type="VARCHAR" length="50" jt="12" />
+			<column name="Proeficiência" type="INT" jt="4" />
+			<index name="pk_Idiomas" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="ID_Pessoa_5" />
+			</index>
+			<fk name="fk_Idiomas_Pessoa" virtual="y" to_schema="AtividadePonderada_Semana2_M2.INSTANCE" to_table="Pessoa" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="ID_Pessoa_5" pk="ID" />
+			</fk>
+		</table>
+		<table name="Personalidade" prior="Entity" >
+			<column name="ID" type="INT" jt="4" mandatory="y" />
+			<column name="ID_Pessoa_4" type="INT" jt="4" mandatory="y" />
+			<column name="Traço_de_personalidade" type="INT" jt="4" mandatory="y" />
+			<index name="pk_Personalidade" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="ID_Pessoa_4" />
+			</index>
+			<fk name="fk_Personalidade_Pessoa" virtual="y" to_schema="AtividadePonderada_Semana2_M2.INSTANCE" to_table="Pessoa" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="ID_Pessoa_4" pk="ID" />
+			</fk>
+		</table>
+		<table name="Pessoa" prior="Entity" >
+			<column name="ID" type="INT" jt="4" mandatory="y" />
+			<column name="Nome" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="Sobrenome" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="Email" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="Telefone" type="INT" jt="4" mandatory="y" />
+			<column name="Endereço" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<index name="pk_Pessoa" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-156a" show_column_type="y" show_relation="columns" >
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Conquistas" color="EEC1D3" x="416" y="320" />
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Experiência" color="CFC1EE" x="48" y="48" />
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Formação" color="C1EEC1" x="784" y="48" />
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Habilidades" color="EED6C1" x="736" y="256" />
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Idiomas" color="EEEBC1" x="144" y="320" />
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Personalidade" color="C1D8EE" x="784" y="432" />
+		<entity schema="AtividadePonderada_Semana2_M2.INSTANCE" name="Pessoa" color="C1D8EE" x="416" y="48" />
+	</layout>
+</project>

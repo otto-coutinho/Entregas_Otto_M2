@@ -1,0 +1,1 @@
+select sum(qtde_horas) from alocacao

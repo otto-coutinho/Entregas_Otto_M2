@@ -41,7 +41,20 @@ app.get('/projetos', (req, res) => {
 	});
 	db.close(); // Fecha o banco
 });
+app.get('/soma', (req, res) => {
+	res.statusCode = 200;
+	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
+	var db = new sqlite3.Database(DBPATH); // Abre o banco
+  var sql = 'select sum (qtde_horas) from alocacao group by cod_projeto';
+	db.all(sql, [],  (err, rows ) => {
+		if (err) {
+		    throw err;
+		}
+		res.json(rows);
+	});
+	db.close(); // Fecha o banco
+});
 // Retorna todos registros de alocações
 app.get('/alocacoes', (req, res) => {
 	res.statusCode = 200;
