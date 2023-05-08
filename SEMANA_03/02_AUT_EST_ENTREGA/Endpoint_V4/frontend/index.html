@@ -21,8 +21,8 @@
         let saida = '';
         usuarios.map(function(pessoa) {
           saida += '<strong> '+ `${pessoa.nome_completo}` + '</strong> ' + `${pessoa.email}`  + ' - ' +  `${pessoa.telefone}`  + ' - ' +  `${pessoa.endereco}`;
-          saida += ' - <a href="/atualizar.html?ID_FORMACAO=' + `${pessoa.id}` + '">EDITAR</a>';
-          saida += ' | <a href="/removeUsuario?ID_FORMACAO='+`${pessoa.id}`+'">REMOVER</a></br>';
+          saida += ' - <a href="/atualizar.html?id=' + `${pessoa.id}` + '">EDITAR</a>';
+          saida += ' | <a href="/removeUsuario?id='+`${pessoa.id}`+'">REMOVER</a></br>';
         });
         document.getElementById('resultado').innerHTML = saida;
       })
