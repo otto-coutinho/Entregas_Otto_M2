@@ -154,3 +154,30 @@ body {
     font-size: 16px;
     border-radius: 10px;
 }
+
+#message-container {
+    display: flex;
+    justify-content: center;
+    margin: 0% auto;
+    width: 50%;
+    background-color: transparent;
+    padding: 1%;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.message-btn {
+    background-color: rgb(0, 181, 222);
+    color: rgb(228, 253, 255);
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.message-btn:hover {
+    background-color: rgb(0, 156, 218);
+    color: rgb(228, 253, 255);
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
