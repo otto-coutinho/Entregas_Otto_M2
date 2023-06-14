@@ -83,14 +83,14 @@
         <div class="row">
             <div class="col">
                 <h2 class="subtitles">Formação Acadêmica</h2>
+                <!-- AS INFORMAÇÕES DA TABELA "FORMAÇÃO ACADÊMICA" FORAM BUSCADAS NO BANCO DE DADOS (AJAX) -->
+                <button class="btn btn-secondary" onclick="trazerFormacao()">Trazer formação</button>
                 <ul>
                     <li>
-                        <h3 class="title-type3">MBA em gestão de projetos - Insper</h3>
-                        <p>Ano de conclusão: 2006</p>
-                    </li>
-                    <li>
-                        <h3 class="title-type3">Análise de Dados - IBMEC</h3>
-                        <p>Ano de conclusão: 1999</p>
+                        <h3 class="title-type3" id="curso1"></h3>
+                        <h4 class="title-type2" id="instituicao1"></h4>
+                        <p>Ano de conclusão: </p>
+                        <p id="ano1"></p>
                     </li>
                 </ul>
             </div>
@@ -173,6 +173,33 @@
                 toggleColorChanger();
             });
         });
+
+        // REQUISIÇÃO AJAX
+
+        function trazerFormacao() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1:2023/formacoes', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var formacoes = JSON.parse(xhr.responseText);
+                        var instituicao = formacoes.map(formacoes => formacoes.instituicao);
+                        document.getElementById('instituicao1').textContent = instituicao;
+
+                        var formacoes = JSON.parse(xhr.responseText);
+                        var fim = formacoes.map(formacoes => formacoes.fim);
+                        document.getElementById('ano1').textContent = fim;
+
+                        var formacoes = JSON.parse(xhr.responseText);
+                        var curso = formacoes.map(formacoes => formacoes.curso);
+                        document.getElementById('curso1').textContent = curso;
+
+                    }
+                }
+            };
+            xhr.send();
+        }
+
     </script>
 </body>
 
