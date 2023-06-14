@@ -1,45 +1,41 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Exemplo de Página com Formulário e AJAX</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $("#enviar").click(function() {
-        var nome = $("#nome").val();
-        var email = $("#email").val();
-        var mensagem = $("#mensagem").val();
-
-        $.ajax({
-          url: "processar.php", // arquivo PHP para processar os dados
-          type: "POST",
-          data: {
-            nome: nome,
-            email: email,
-            mensagem: mensagem
-          },
-          success: function(resposta) {
-            $("#resultado").text(resposta);
-          }
-        });
-      });
-    });
-  </script>
+  <meta charset="utf-8">
+  <title>jQuery.post demo</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
-  <form>
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" placeholder="Nome"><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" placeholder="Email"><br>
-
-    <label for="mensagem">Mensagem:</label>
-    <textarea id="mensagem" placeholder="Mensagem"></textarea><br>
-
-    <button type="button" id="enviar">Enviar</button>
-  </form>
-
-  <div id="resultado"></div>
+ 
+<form action="/" id="searchForm">
+  <input type="text" name="s" placeholder="Search...">
+  <input type="submit" value="Search">
+</form>
+<!-- the result of the search will be rendered inside this div -->
+<div id="result"></div>
+ 
+<script>
+// Attach a submit handler to the form
+$( "#searchForm" ).on( "submit", function( event ) {
+ 
+  // Stop form from submitting normally
+  event.preventDefault();
+ 
+  // Get some values from elements on the page:
+  var $form = $( this ),
+    term = $form.find( "input[name='s']" ).val(),
+    url = $form.attr( "action" );
+ 
+  // Send the data using post
+  var posting = $.post( url, { s: term } );
+ 
+  // Put the results in a div
+  posting.done(function( data ) {
+    var content = $( data ).find( "#content" );
+    $( "#result" ).empty().append( content );
+  } );
+} );
+</script>
+ 
 </body>
 </html>

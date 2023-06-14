@@ -89,18 +89,19 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="recipient-message" class="col-form-label">Mensagem:</label>
-                                        <textarea class="form-control" id="recipient-message"></textarea>
+                                        <input class="form-control" id="recipient-message"></input>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary" id="enviar">Enviar</button>
+                                        <button type="button" class="btn btn-primary" id="enviar" onclick="sendInfo()">Enviar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" id="message-container">
+                <div class="container-fluid" id="message-view">
+
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -126,26 +127,25 @@
                         window.location.href = "biografia.html";
                     });
                 });
-                $(document).ready(function () {
-                    $("#enviar").click(function () {
-                        var nome = $("#recipient-name").val();
-                        var email = $("#recipient-email").val();
-                        var mensagem = $("#recipient-message").val();
-
-                        $.ajax({
-                            url: "processar.php", // arquivo PHP para processar os dados
-                            type: "POST",
-                            data: {
-                                nome: nome,
-                                email: email,
-                                mensagem: messagem
-                            },
-                            success: function (resposta) {
-                                $("#message-sent").text(resposta);
-                            }
-                        });
+                //CÓDIGO PARA MOSTRAR O TEXTO
+                $("button").click(function () {
+                    $("#div1").load("demo_test.txt", function (responseTxt, statusTxt, xhr) {
+                        if (statusTxt == "success")
+                            alert("External content loaded successfully!");
+                        if (statusTxt == "error")
+                            alert("Error: " + xhr.status + ": " + xhr.statusText);
                     });
                 });
+                //CÓDIGO PARA ENVIAR A MENSAGEM
+                function sendInfo() {
+                    var name = document.getElementById("recipient-name").value;
+                    var email = document.getElementById("recipient-email").value;
+                    var message = document.getElementById("recipient-message").value;
+                    
+                    $.post("processar.php", {name: name, email: email, message: message}, function(data){
+                        $("#message-view").html(data);
+                    });
+                };
             </script>
 </body>
 

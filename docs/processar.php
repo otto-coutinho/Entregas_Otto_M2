@@ -1,15 +1,11 @@
 <?php
-// Obtém os valores enviados pelo AJAX
-$nome = $_POST['nome'];
+
+$name = $_POST['name'];
 $email = $_POST['email'];
-$mensagem = $_POST['mensagem'];
+$message = $_POST['message'];
 
-// Processa os dados (por exemplo, você pode enviar um e-mail com essas informações)
-// Aqui, estamos apenas concatenando as informações em uma string
-$resposta = "Nome: " . $nome . "\n";
-$resposta .= "Email: " . $email . "\n";
-$resposta .= "Mensagem: " . $mensagem;
+print "Nome: $name <br>";
+print "E-mail: $email <br>";
+print "Mensagem: $message <br>";
 
-// Retorna a resposta ao AJAX
-echo $resposta;
 ?>
