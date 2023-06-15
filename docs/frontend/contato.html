@@ -12,8 +12,10 @@
 
 <body>
     <header>
+        <!-- NAVBAR IMPORTADO DA BIBLIOTECA BOOTSTRAP -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
+                <!-- TÍTULO -->
                 <a class="navbar-brand" href="#">Currículo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -23,15 +25,19 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
+                            <!-- BOTÃO QUE REDIRECIONA PARA A HOME -->
                             <a class="nav-link active" id="home-button" aria-current="page" href="#">Home</a>
                         </li>
+                        <!-- DROPDOWN QUE EXPANDE E REVELA OS LINKS DE REDIRECIONAMENTO -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Mais informações
                             </a>
                             <ul class="dropdown-menu">
+                                <!-- LINK QUE REDIRECIONA PARA A PÁGINA CONTATO -->
                                 <li><a class="dropdown-item" id="contact-button" href="#">Contato</a></li>
+                                <!-- LINK QUE REDIRECIONA PARA A PÁGINA BIOGRAFIA -->
                                 <li><a class="dropdown-item" id="biography-button" href="#">Biografia</a></li>
                             </ul>
                         </li>
@@ -40,6 +46,7 @@
             </div>
         </nav>
     </header>
+    <!-- DIV QUE CONTEM A IMAGEM DE PERFIL, NOME E INFORMAÇÕES DE CONTATO -->
     <img class="profile-pic"
         src="https://akamai.sscdn.co/uploadfile/letras/fotos/e/4/5/9/e459f7cccf848b4a603e1359a3d9d2c2-tb4.jpg"
         alt="profile-picture">
@@ -61,7 +68,13 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+
+
+    <!-- BOTÃO QUE PERMITE AO USUÁRIO ENVIAR UMA MENSAGEM QUE SERÁ EXIBIDA UTILIZANDO AJAX -- 
+    AINDA ESTOU DESENVOLVENDO ESSA FUNÇÃO EXTRA, POR FAVOR, DESCONSIDERE -->
+
+
+    <!-- <div class="container-fluid">
         <div class="container" id="message-sent">
             <div class="row">
                 <div class="col">
@@ -94,59 +107,48 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Fechar</button>
-                                        <button type="button" class="btn btn-primary" id="enviar" onclick="sendInfo()">Enviar</button>
+                                        <button type="button" class="btn btn-primary" id="enviar"
+                                            onclick="sendInfo()">Enviar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="container-fluid" id="message-view">
-
+                    <div id="resultado-nome"></div>
+                    <div id="resultado-email"></div>
+                    <div id="resultado-mensagem"></div>
                 </div>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-                crossorigin="anonymous"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-                integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#contact-button').click(function () {
-                        window.location.href = "contato.html";
-                    });
-                });
-                $(document).ready(function () {
-                    $('#home-button').click(function () {
-                        window.location.href = "index.html";
-                    });
-                });
-                // Código para redirecionar para a página de biografia
-                $(document).ready(function () {
-                    $('#biography-button').click(function () {
-                        window.location.href = "biografia.html";
-                    });
-                });
-                //CÓDIGO PARA MOSTRAR O TEXTO
-                $("button").click(function () {
-                    $("#div1").load("demo_test.txt", function (responseTxt, statusTxt, xhr) {
-                        if (statusTxt == "success")
-                            alert("External content loaded successfully!");
-                        if (statusTxt == "error")
-                            alert("Error: " + xhr.status + ": " + xhr.statusText);
-                    });
-                });
-                //CÓDIGO PARA ENVIAR A MENSAGEM
-                function sendInfo() {
-                    var name = document.getElementById("recipient-name").value;
-                    var email = document.getElementById("recipient-email").value;
-                    var message = document.getElementById("recipient-message").value;
-                    
-                    $.post("processar.php", {name: name, email: email, message: message}, function(data){
-                        $("#message-view").html(data);
-                    });
-                };
-            </script>
+            </div> -->
+
+
+    <!-- BIBLIOTECAS IMPORTADAS (JQUERY, BOOTSTRAP, AJAX) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        //CÓDIGO PARA REDIRECIONAR PARA AS PÁGINAS A PARTIR DO LINK
+        $(document).ready(function () {
+            $('#contact-button').click(function () {
+                window.location.href = "contato.html";
+            });
+        });
+        $(document).ready(function () {
+            $('#home-button').click(function () {
+                window.location.href = "index.html";
+            });
+        });
+        // Código para redirecionar para a página de biografia
+        $(document).ready(function () {
+            $('#biography-button').click(function () {
+                window.location.href = "biografia.html";
+            });
+        });
+
+    </script>
 </body>
 
 </html>

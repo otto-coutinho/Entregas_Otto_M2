@@ -1,0 +1,43 @@
+<!-- POR FAVOR, DESCONSIDERE ESTA ARQUIVO, ELE É APENAS PARA TESTES -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de AJAX/JQuery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#enviar").click(function() {
+        var nome = $("#nome").val();
+        var email = $("#email").val();
+        var mensagem = $("#mensagem").val();
+
+        $.ajax({
+          url: "processar.php", // arquivo PHP para processar os dados
+          type: "POST",
+          data: {
+            nome: nome,
+            email: email,
+            mensagem: mensagem
+          },
+          success: function(response) {
+            $("#resultado-nome").text("Nome: " + nome);
+            $("#resultado-email").text("Email: " + email);
+            $("#resultado-mensagem").text("Mensagem: " + mensagem);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <input type="text" id="nome" placeholder="Nome"><br>
+  <input type="email" id="email" placeholder="Email"><br>
+  <textarea id="mensagem" placeholder="Mensagem"></textarea><br>
+  <button id="enviar">Enviar</button><br>
+  
+  <div id="resultado-nome"></div>
+  <div id="resultado-email"></div>
+  <div id="resultado-mensagem"></div>
+</body>
+</html>

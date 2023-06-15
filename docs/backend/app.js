@@ -34,3 +34,8 @@ app.get('/formacoes', (req, res) => {
 app.listen(port, hostname, () => {
 	console.log(`Servidor rodando em http://${hostname}:${port}/`);
   });
+
+app.get('/php', (req, res) => {
+	res.statusCode = 200;
+	res.redirect('processar.php')
+});
